@@ -34,3 +34,5 @@ Best explanation exist here.
 
 //Cors and debugging in react:
 ->Cors->The error mostly for backend
+
+#Indirect export v/s direct export

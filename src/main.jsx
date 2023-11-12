@@ -6,9 +6,7 @@ import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import AuthLayout from './components/Authlayout.jsx'
-import Login from './pages/Login.jsx'
-import Signup from './pages/Signup.jsx'
-import AllPosts from './pages/Allposts.jsx'
+import {Home,Login,SignUp,AllPosts,AddPost,EditPost,Post} from './pages/PagesIndex.js'
 
 const router=createBrowserRouter([     //Routing overall kasari kaam garxa bujna parni xa.
   {
@@ -32,7 +30,7 @@ const router=createBrowserRouter([     //Routing overall kasari kaam garxa bujna
       path:'/signup',
       element:(
         <AuthLayout authentication>
-          <Signup/>
+          <SignUp/>
         </AuthLayout>
       )
     },
