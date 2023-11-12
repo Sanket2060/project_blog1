@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { authservice} from '../appwrite/auth'
+import  authservice from '../appwrite/auth'
 import { login as authlogin } from '../store/authSlice'
 import {set, useForm} from 'react-hook-form'
 import {Input,Button,Logo} from './index'
@@ -53,9 +53,9 @@ function Login() {
                   /^([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/.test(value)||"email address must be valid"
                   }
             }})}/>
-            <Input type="password" label="Password:" placeholder="Enter password" {...register("password"),{
+            <Input type="password" label="Password:" placeholder="Enter password" {...register("password",{
               required:true
-            }}/>
+            })}/>
             <Button type="submit" className='w-full'>Sign in </Button>   
             {/* possible to call like this??Component lai esari call garera */}
           </div>

@@ -1,3 +1,4 @@
+import AuthLayout from './Authlayout.jsx'
 import Header from './Header/Header.jsx'
 import Footer from './Footer/Footer.jsx'
 import Container from './container/Container.jsx'
@@ -24,5 +25,6 @@ export {
     Select,
     RTE,
     Signup,
-    PostForm
+    PostForm,
+    AuthLayout
 }
