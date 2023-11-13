@@ -29,7 +29,7 @@ const router=createBrowserRouter([     //Routing overall kasari kaam garxa bujna
       {
       path:'/signup',
       element:(
-        <AuthLayout authentication>
+        <AuthLayout authentication={false}>
           <SignUp/>
         </AuthLayout>
       )

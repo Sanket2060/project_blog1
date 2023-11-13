@@ -13,6 +13,7 @@ function Signup() {
   const dispatch=useDispatch();
   const {register,handleSubmit}=useForm();
   const signup=async(data)=>{
+   console.log("Clicked!!!");
     try {
       const userData=await authservice.createAccount(data);
       if (userData){
@@ -40,7 +41,7 @@ function Signup() {
         Already have an account&nbsp;
         <Link to="/login"
         className='font-medium text-primary transition-all duration-200 hover-underline'>
-            Sign Up
+             Log-in 
         </Link>
      </p>
      {error && <p className='text-red-600 mt-8 text-center'>{error}</p>}
