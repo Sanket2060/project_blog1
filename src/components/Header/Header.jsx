@@ -46,7 +46,7 @@ function Header() {
          <ul className='flex ml-auto'>
             {navItem.map((item)=>
             item.active?(<li key={item.name}>
-              <button onClick={()=>{navigate(itme.slug)}}>{item.name}</button>   {/*usuage of 
+              <button onClick={()=>{navigate(item.slug)}}>{item.name}</button>   {/*usuage of 
               navigate from react router   */}
             </li>):null
             )}

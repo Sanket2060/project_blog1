@@ -1,10 +1,11 @@
-import React from 'react'
+import React,{useState} from 'react'
 import authservice from '../appwrite/auth'
 import { Link,useNavigate } from 'react-router-dom'
 import {Button,Input} from '../components/index'
 import { login } from '../store/authSlice'
 import { useDispatch } from 'react-redux'
 import {useForm} from 'react-hook-form'
+import {Logo} from './index'
 
 function Signup() {
   const [error, setError] = useState("")

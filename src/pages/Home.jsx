@@ -7,11 +7,18 @@ function Home() {
     
     const post=service.getPosts().then(()=>{
         console.log(post);
-       if (post){
-           setPosts(post);
-       }
+        if (post){
+            setPosts(post);
+        }
     })
-    },[])
+},[])
+useEffect(() => {
+  
+  console.log(posts);
+
+  
+}, [posts])
+
     if (posts.length===0){
         return(
             <div className='w-full py-8 mt-4 text-center'>
@@ -33,11 +40,11 @@ function Home() {
       <div className='w-full py-8'>
         <Container>
             <div className='flex flex-wrap'>
-                {posts?.map((post)=>{
+                {(posts.length>0)?posts.map((post)=>{
                     <div key={post.id} className='p-2 w-1/4'>
                         <PostCard {...post}/>
                     </div>
-                })}
+                }):null}
             </div>
         </Container>
       </div>
