@@ -13,17 +13,17 @@ function Signup() {
   const dispatch=useDispatch();
   const {register,handleSubmit}=useForm();
   const signup=async(data)=>{
-   console.log("Clicked!!!");
-    try {
-      const userData=await authservice.createAccount(data);
-      if (userData){
-      const userData= await authservice.getCurrentUser();
-       useDispatch(login(userData));
-       navigate("/");
-      }  
-    } catch (error) {
-      setError(error);
-    }
+   console.log(data);
+   // try {
+   //    const userData=await authservice.createAccount(data);
+   //    if (userData){
+   //    const userData= await authservice.getCurrentUser();
+   //     useDispatch(login(userData));
+   //     navigate("/");
+   //    }  
+   //  } catch (error) {
+   //    setError(error);
+   //  }
     
   }
   return (

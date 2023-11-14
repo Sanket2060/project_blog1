@@ -6,18 +6,11 @@ function Home() {
     useEffect(()=>{
     
     const post=service.getPosts().then(()=>{
-        console.log(post);
         if (post){
             setPosts(post);
         }
     })
 },[])
-useEffect(() => {
-  
-  console.log(posts);
-
-  
-}, [posts])
 
     if (posts.length===0){
         return(
