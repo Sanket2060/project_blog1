@@ -14,16 +14,16 @@ function Signup() {
   const {register,handleSubmit}=useForm();
   const signup=async(data)=>{
    console.log(data);
-   // try {
-   //    const userData=await authservice.createAccount(data);
-   //    if (userData){
-   //    const userData= await authservice.getCurrentUser();
-   //     useDispatch(login(userData));
-   //     navigate("/");
-   //    }  
-   //  } catch (error) {
-   //    setError(error);
-   //  }
+   try {
+      const userData=await authservice.createAccount(data);
+      if (userData){
+      const userData= await authservice.getCurrentUser();
+       useDispatch(login(userData));
+       navigate("/");
+      }  
+    } catch (error) {
+      setError(error);
+    }
     
   }
   return (
@@ -52,17 +52,21 @@ function Signup() {
            placeholder="Enter your name" {...register("name",{
             required:true
            })}
-           ></Input>
+           />
            <Input
            type="email"
            label="Email:"
-           placeholder="Enter your email"
-           ></Input>
+           placeholder="Enter your email" {...register("email",{
+            required:true
+           })}
+           />
            <Input
            type="password"
            label="Password:"
-           placeholder="Enter your password"
-           ></Input>
+           placeholder="Enter your password" {...register("password",{
+            required:true
+           })}
+           />
            <Button type='submit'>Create Account</Button>
 
         </form>

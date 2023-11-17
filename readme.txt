@@ -36,3 +36,6 @@ Best explanation exist here.
 ->Cors->The error mostly for backend
 
 #Indirect export v/s direct export
+
+
+6.Description about children and ...props(spread operator)->https://chat.openai.com/share/8c615cf7-4649-4b53-85f8-cd95eda202f7

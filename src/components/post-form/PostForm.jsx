@@ -2,12 +2,12 @@ import {React,useCallback, useEffect} from 'react'
 import {useForm} from 'react-hook-form'
 import {Button,Input,Select,RTE} from '../index'
 import  appwriteService from '../../appwrite/config' // import default hai toh kuch bhi import kar sakte
-//naam se import kar sakte hai kya?
+//naam se import kar sakte hai kya?->Haan default import ho toh aur koi naam se bhi import kar sakte hai
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import service from '../../appwrite/config'
 function PostForm({post}) {
-  const userData=useSelector(state=>state.user.userData)  //whyn't state.userData??
+  const userData=useSelector(state=>state.userData)  //whyn't state.userData??
   const {register,handleSubmit,watch,setValue,control,getValues}=useForm({
     defaultValues:{   //default values to store for the current form
       title:post?.title || '',
@@ -48,7 +48,7 @@ function PostForm({post}) {
 return "";
 }, []);
 
-React.useEffect(() => {       //code to actually change to slug(tara bujiyena)
+useEffect(() => {       //code to actually change to slug(tara bujiyena)
   const subscription = watch((value, { name }) => {
       if (name === "title") {
           setValue("slug", slugTransform(value.title), { shouldValidate: true });
@@ -107,7 +107,7 @@ React.useEffect(() => {       //code to actually change to slug(tara bujiyena)
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full mt-12">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>
