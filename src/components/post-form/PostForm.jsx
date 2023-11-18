@@ -6,8 +6,10 @@ import  appwriteService from '../../appwrite/config' // import default hai toh k
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import service from '../../appwrite/config'
+
+
 function PostForm({post}) {
-  const userData=useSelector(state=>state.userData)  //whyn't state.userData??
+  const userData=useSelector(state=>state.userData)  //whyn't state.userData??Why state not used?
   const {register,handleSubmit,watch,setValue,control,getValues}=useForm({
     defaultValues:{   //default values to store for the current form
       title:post?.title || '',
@@ -19,10 +21,11 @@ function PostForm({post}) {
   const navigate= useNavigate();
   const submit=async (data)=>{      //form bata aako data as data parameter vanera lina ra use
     //garna milxa
-    if (data){
+    if (post){   //post xa so update part
       const file=data.image[0]?service.uploadFile(data.image[0]):null;
-      file?service.deleteFile(data.featuredImage):null;
+      file?service.deleteFile(post.featuredImage):null;   //feri hernu xa yesma correct garna lai
     const dbPost=await service.updatePost(post.$id,{...data,featuredImage:file?file.$id:undefined})
+    console.log("dbPost:",dbPost);
       if (dbPost){
         navigate(`/post/${dbPost.$id}`)
       }
@@ -31,8 +34,8 @@ function PostForm({post}) {
       //garera garey hunxa
       if (file){
         const fileId=file.$id;
-       const dbPost=await service.createPost({...data,userId:userData.$id})
-        navigate(`/post/${dbPost.$id}`)
+      //  const dbPost=await service.createPost({...data,userId:userData.$id})
+        // navigate(`/post/${dbPost.$id}`)
       }
     }
   }
@@ -59,6 +62,10 @@ useEffect(() => {       //code to actually change to slug(tara bujiyena)
   }
 }, [watch,slugTransform,setValue])
 
+
+useEffect(() => {
+  console.log("Current user data:",userData) 
+}, [userData])
 
 
   return (

@@ -1,9 +1,9 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import authservice from '../appwrite/auth'
 import { Link,useNavigate } from 'react-router-dom'
 import {Button,Input} from '../components/index'
 import { login } from '../store/authSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {useForm} from 'react-hook-form'
 import {Logo} from './index'
 
@@ -12,20 +12,28 @@ function Signup() {
   const navigate=useNavigate();
   const dispatch=useDispatch();
   const {register,handleSubmit}=useForm();
+  const myData=useSelector((state)=>state.userData)
   const signup=async(data)=>{
-   console.log(data);
+   // console.log(data);
    try {
       const userData=await authservice.createAccount(data);
+      // console.log("Data of created account",userData);
       if (userData){
       const userData= await authservice.getCurrentUser();
-       useDispatch(login(userData));
+      // console.log("Data of created account",userData);
+       dispatch(login(userData));
        navigate("/");
       }  
     } catch (error) {
       setError(error);
-    }
-    
+    }  
   }
+
+  useEffect(() => {
+    console.log("Data from redux toolkit:",myData);
+  }, [myData])
+  
+
   return (
      <>
        <div className='flex items-center justify-center'>
