@@ -24,17 +24,17 @@ function PostForm({post}) {
     if (post){   //post xa so update part
       const file=data.image[0]?service.uploadFile(data.image[0]):null;
       file?service.deleteFile(post.featuredImage):null;   //feri hernu xa yesma correct garna lai
+      // console.log("Reached here");
     const dbPost=await service.updatePost(post.$id,{...data,featuredImage:file?file.$id:undefined})
     console.log("dbPost:",dbPost);
       if (dbPost){
         navigate(`/post/${dbPost.$id}`)
       }
     }else{
-      const file=await service.uploadFile(data.image[0])  //file xa ki xaina vanera check
-      //garera garey hunxa
+      const file=await service.uploadFile(data.image[0])
       if (file){
         const fileId=file.$id;
-      //  const dbPost=await service.createPost({...data,userId:userData.$id})
+       const dbPost=await service.createPost({...data,userId:userData.$id})
         // navigate(`/post/${dbPost.$id}`)
       }
     }
@@ -63,9 +63,14 @@ useEffect(() => {       //code to actually change to slug(tara bujiyena)
 }, [watch,slugTransform,setValue])
 
 
-useEffect(() => {
+useEffect(() => { 
   console.log("Current user data:",userData) 
 }, [userData])
+
+
+
+
+ 
 
 
   return (

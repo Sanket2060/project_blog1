@@ -32,6 +32,9 @@ function Signup() {
   useEffect(() => {
     console.log("Data from redux toolkit:",myData);
   }, [myData])
+//   useEffect(() => {
+//    console.log("Redux State:", useSelector((state) => state));
+//  }, []);
   
 
   return (
