@@ -9,7 +9,7 @@ import service from '../../appwrite/config'
 
 
 function PostForm({post}) {
-  const userData=useSelector(state=>state.userData)  //whyn't state.userData??Why state not used?
+  const userData=useSelector(state=>state.auth.userData)  //whyn't state.userData??Why state not used?
   const {register,handleSubmit,watch,setValue,control,getValues}=useForm({
     defaultValues:{   //default values to store for the current form
       title:post?.title || '',
@@ -23,9 +23,9 @@ function PostForm({post}) {
     //garna milxa
     if (post){   //post xa so update part
       const file=data.image[0]?service.uploadFile(data.image[0]):null;
-      file?service.deleteFile(post.featuredImage):null;   //feri hernu xa yesma correct garna lai
+      file?service.deleteFile(post.featuredimage):null;   //feri hernu xa yesma correct garna lai
       // console.log("Reached here");
-    const dbPost=await service.updatePost(post.$id,{...data,featuredImage:file?file.$id:undefined})
+    const dbPost=await service.updatePost(post.$id,{...data,featuredimage:file?file.$id:undefined})
     console.log("dbPost:",dbPost);
       if (dbPost){
         navigate(`/post/${dbPost.$id}`)
@@ -33,9 +33,10 @@ function PostForm({post}) {
     }else{
       const file=await service.uploadFile(data.image[0])
       if (file){
+        console.log(file.$id);
         const fileId=file.$id;
-       const dbPost=await service.createPost({...data,userId:userData.$id})
-        // navigate(`/post/${dbPost.$id}`)
+       const dbPost=await service.createPost({...data,featuredimage:`${file.$id}`,userId:userData.$id})
+        navigate(`/post/${dbPost.$id}`);
       }
     }
   }
@@ -107,7 +108,7 @@ useEffect(() => {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.getFilePreview(post.featuredimage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
